@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionários</title>
+    <script src="./js/lucide.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/elements.css">
+    <script src="./js/tabelas.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          lucide.createIcons();
+        })
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          tabelas.alternarTabela();
+        })
+    </script>
+</head>
+
+<body>
+<nav>
+    <h1>Tabelas</h1>
+    <menu> <!-- depois -->
+        <circle>
+            <i data-lucide="menu"></i>
+        </circle>
+    </menu>
+    <links>
+        <a title="Voltar" th:href="@{/funcionario}">
+            <i data-lucide="undo-2"></i>
+        </a>
+    </links>
+</nav>
+<!-- Tab links -->
+<div class="tab">
+    <button class="tablinks" onclick="alternarTabela(event, 'INSS')">INSS</button>
+    <button class="tablinks" onclick="alternarTabela(event, 'SF')">Salário Família</button>
+    <button class="tablinks" onclick="alternarTabela(event, 'IRRF')">IRRF</button>
+</div>
+<form th:action="@{/tabelas/salvar}" th:object="${tabelas}" method="POST" autocomplete="off">
+<!-- Tab content -->
+<div id="INSS" class="tabcontent">
+    <h3>INSS</h3>
+    <table id="tabela">
+        <tr>
+            <th>Piso</th>
+            <th></th>
+            <th>Teto</th>
+            <th>Alíquota</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Até</td>
+            <td><input type="number" step="0.01" th:field="*{tinss1}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{ainss1}" min="0" required></td>
+        </tr>
+        <tr>
+            <td><p th:text="*{tinss1}"></p></td>
+            <td>Até</td>
+            <td><input type="number" step="0.01" th:field="*{tinss2}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{ainss2}" min="0" required></td>
+        </tr>
+        <tr>
+            <td><p th:text="*{tinss2}"></p></td>
+            <td>Até</td>
+            <td><input type="number" step="0.01" th:field="*{tinss3}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{ainss3}" min="0" required></td>
+        </tr>
+        <tr>
+            <td><p th:text="*{tinss3}"></p></td>
+            <td>Até</td>
+            <td><input type="number" step="0.01" th:field="*{tinss4}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{ainss4}" min="0" required></td>
+        </tr>
+    </table>
+</div>
+
+<div id="SF" class="tabcontent">
+    <h3>Salário Família</h3>
+    <table id="tabela">
+        <tr>
+            <th></th>
+            <th>Teto</th>
+            <th></th>
+            <th>Valor SF</th>
+        </tr>
+        <tr>
+            <td>Até</td>
+            <td><input type="number" step="0.01" th:field="*{tsf}" min="0" required></td>
+            <td>Valor p/ dependente</td>
+            <td><input type="number" step="0.01" th:field="*{vsf}" min="0" required></td>
+        </tr>
+
+    </table>
+</div>
+
+<div id="IRRF" class="tabcontent">
+    <h3>IRFF</h3>
+    <table id="tabela">
+        <tr>
+            <th>Piso</th>
+            <th><input type="number" th:field="*{id}" hidden></th>
+            <th>Base de Cálculo</th>
+            <th>Alíquota</th>
+            <th>Dedução</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><input type="number" step="0.01" th:field="*{tirrf1}" min="0" required></td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><p th:text="*{tirrf1}"></p></td>
+            <td>Até</td>
+            <td><input type="number" step="0.01" th:field="*{tirrf2}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{airrf2}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{dirrf2}" min="0" required></td>
+        </tr>
+        <tr>
+            <td><p th:text="*{tirrf2}"></p></td>
+            <td>Até</td>
+            <td><input type="number" step="0.01" th:field="*{tirrf3}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{airrf3}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{dirrf3}" min="0" required></td>
+        </tr>
+        <tr>
+            <td><p th:text="*{tirrf3}"></p></td>
+            <td>Até</td>
+            <td><input type="number" step="0.01" th:field="*{tirrf4}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{airrf4}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{dirrf4}" min="0" required></td>
+        </tr>
+        <tr>
+            <td><p th:text="*{tirrf4}"></p></td>
+            <td>Até</td>
+            <td><input type="number" step="0.01" th:field="*{tirrf4}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{airrf5}" min="0" required></td>
+            <td><input type="number" step="0.01" th:field="*{dirrf5}" min="0" required></td>
+        </tr>
+        <tr>
+            <td>Dedução por dependente</td>
+            <td><input type="number" step="0.01" th:field="*{dedpdep}" min="0" required></td>
+        </tr>
+
+    </table>
+</div>
+
+    <button type="submit">Atualizar</button>
+</form>
+</body>
+
+</html>

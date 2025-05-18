@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holerite</title>
+    <script src="/js/lucide.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/colors.css">
+    <link rel="stylesheet" href="/css/elements.css">
+    <script src="/js/tabelas.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          lucide.createIcons();
+        })
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          tabelas.alternarTabela();
+        })
+    </script>
+</head>
+
+<body>
+<nav>
+    <h1>Holerite</h1>
+    <menu> <!-- depois -->
+        <circle>
+            <i data-lucide="menu"></i>
+        </circle>
+    </menu>
+    <links>
+        <a title="Voltar" th:href="@{/funcionario}">
+            <i data-lucide="undo-2"></i>
+        </a>
+    </links>
+</nav>
+
+    <table class="tabelas">
+    <tr>
+      <th>Código</th>
+      <th>Nome do Funcionário</th>
+    </tr>
+    <tr>
+      <td th:text="${funcionario.id}"></td>
+      <td th:text="${funcionario.nome}"></td>
+    </tr>
+    </table>
+
+    <table class="tabelas">
+    <tr>
+      <th>Descrição</th>
+      <th>Vencimentos</th>
+      <th>Descontos</th>
+    </tr>
+    <tr>
+      <td>Salário</td>
+      <td th:text="${funcionario.salBaseTotalFormatado}"></td>
+      <td></td>
+    </tr>
+    <tr>
+        <td>INSS</td>
+        <td></td>
+        <td th:text="${cf.inssTotalFormatado}"></td>
+    </tr>
+    <tr>
+        <td>Salário Família</td>
+        <td th:text="${cf.sfTotalFormatado}"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Vale Transporte</td>
+        <td></td>
+        <td th:text="${cf.vtTotalFormatado}"></td>
+    </tr>
+    <tr>
+        <td>IRRF</td>
+        <td></td>
+        <td th:text="${cf.irrfTotalFormatado}"></td>
+    </tr>
+    <tr>
+      <th colspan="1"></th>
+      <th>Total de Vencimentos</th>
+      <th>Total de Descontos</th>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+        <td th:text="${cf.totalvTotalFormatado}"></td>
+      <td th:text="${cf.totaldTotalFormatado}" ></td>
+    </tr>
+    <tr>
+      <th colspan="1"></th>
+      <th>Valor Liquido</th>
+      <td th:text="${cf.salliqTotalFormatado}"></td>
+    </tr>
+    </table>
+</body>
+</html>
